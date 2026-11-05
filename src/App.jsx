@@ -81,7 +81,7 @@ gsap.registerPlugin(ScrollTrigger);
 function Logo({ dark = false }) {
   return (
     <a className={`brand-mark${dark ? ' brand-mark--dark' : ''}`} href="#top" aria-label="Parfumefy, ke atas">
-      <span className="brand-icon" aria-hidden="true"><span /></span>
+      <img className="brand-icon" src="/parfumefy-mark.png" alt="" aria-hidden="true" />
       <span>parfumefy<span className="brand-dot">.</span></span>
     </a>
   );

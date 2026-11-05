@@ -34,13 +34,9 @@ button { color: inherit; }
 .header-inner { height: 100%; padding: 0 5.4vw; display: flex; align-items: center; justify-content: space-between; }
 .brand-mark { display: inline-flex; align-items: center; gap: 10px; font-size: 21px; font-weight: 700; letter-spacing: -.07em; color: var(--green-deep); }
 .brand-dot { color: #be7458; }
-.brand-icon { position: relative; display: block; width: 25px; height: 25px; border: 1.2px solid currentColor; border-radius: 50%; transform: rotate(-35deg); }
-.brand-icon::before, .brand-icon::after, .brand-icon span { content: ''; position: absolute; border: 1px solid currentColor; border-radius: 50%; inset: 4px 7px; }
-.brand-icon::before { transform: rotate(60deg); }
-.brand-icon::after { transform: rotate(-60deg); }
-.brand-icon span { inset: 11px; background: var(--green-deep); }
+.brand-icon { display: block; width: 26px; height: 34px; flex: 0 0 auto; object-fit: contain; }
 .brand-mark--dark { color: #f0eee8; }
-.brand-mark--dark .brand-icon span { background: #f0eee8; }
+.brand-mark--dark .brand-icon { filter: brightness(0) invert(1); }
 .main-nav { display: flex; align-items: center; gap: clamp(24px, 4vw, 58px); margin-left: 6%; }
 .main-nav a { color: #49544d; font-size: 12px; transition: color .2s ease; }
 .main-nav a:hover { color: #b26349; }
@@ -306,7 +302,7 @@ button { color: inherit; }
   .site-header { height: 68px; }
   .header-inner { padding-inline: 19px; }
   .brand-mark { font-size: 19px; }
-  .brand-icon { width: 23px; height: 23px; }
+  .brand-icon { width: 23px; height: 30px; }
   .main-nav { position: absolute; top: 67px; left: 0; right: 0; display: none; padding: 9px 22px 20px; margin: 0; flex-direction: column; align-items: stretch; gap: 0; background: var(--paper); border-bottom: 1px solid var(--line); box-shadow: 0 15px 25px rgba(31,44,35,.08); }
   .main-nav.is-open { display: flex; animation: navIn .2s ease both; }
   .main-nav a { padding: 14px 0; border-bottom: 1px solid rgba(32,42,37,.1); }
