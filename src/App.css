@@ -326,6 +326,9 @@ button { color: inherit; }
   .hero-art { min-height: 315px; margin-top: -5px; }
   .hero-art__stage { height: min(82vw, 325px); }
   .hero-art__sun { width: 74%; top: 8%; left: 13%; }
+  .hero-art__sun { box-shadow: inset -14px -9px 34px rgba(107,57,39,.13), 0 0 36px rgba(180,121,94,.1); will-change: transform; }
+  .hero-product, .hero-shard { will-change: auto; }
+  .hero-shard { filter: none; }
   .hero-art__pedestal { bottom: 3%; }
   .hero-product--1 { width: min(100%, 350px); }
   .hero-product--2, .hero-product--3, .hero-product--4 { height: 91%; }

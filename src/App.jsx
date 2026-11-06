@@ -21,7 +21,7 @@ const perfumes = [
     brand: 'AFNAN',
     name: '9 PM',
     subtitle: 'The after-hours icon',
-    image: '/images/afnan-9pm-cutout.png',
+    image: '/images/afnan-9pm-cutout.webp',
     family: 'Gourmand',
     category: 'Manis · Spicy',
     volume: '100 ml · Eau de Parfum',
@@ -35,7 +35,7 @@ const perfumes = [
     brand: 'ZIMAYA',
     name: 'Sharaf Blend',
     subtitle: 'A little golden hour',
-    image: '/images/zimaya-sharaf-cutout.png',
+    image: '/images/zimaya-sharaf-cutout.webp',
     family: 'Gourmand',
     category: 'Amber · Gourmand',
     volume: '100 ml · Eau de Parfum',
@@ -49,7 +49,7 @@ const perfumes = [
     brand: 'HMNS',
     name: 'Philea',
     subtitle: 'A softer kind of becoming',
-    image: '/images/hmns-philea-cutout.png',
+    image: '/images/hmns-philea-cutout.webp',
     family: 'Floral',
     category: 'Floral · Green',
     volume: '100 ml · Eau de Parfum',
@@ -63,7 +63,7 @@ const perfumes = [
     brand: 'KENZ × RASASI',
     name: 'Hawas Frost',
     subtitle: 'A new chapter in ice',
-    image: '/images/hawas-frost-cutout.png',
+    image: '/images/hawas-frost-cutout.webp',
     family: 'Fresh',
     category: 'New release · 2026',
     volume: '100 ml · Eau de Parfum',
@@ -157,7 +157,8 @@ function createShardCells(seed, count = 28) {
 }
 
 function HeroPerfume({ perfume, index }) {
-  const shards = useMemo(() => createShardCells(1807 + index * 937), [index]);
+  const shardCount = useMemo(() => window.matchMedia('(max-width: 700px)').matches ? 12 : 28, []);
+  const shards = useMemo(() => createShardCells(1807 + index * 937, shardCount), [index, shardCount]);
   const maskStyle = {
     maskImage: `url("${perfume.image}")`,
     WebkitMaskImage: `url("${perfume.image}")`,
@@ -170,11 +171,12 @@ function HeroPerfume({ perfume, index }) {
         src={perfume.image}
         alt={`${perfume.brand} ${perfume.name}`}
         fetchPriority={index === 0 ? 'high' : 'auto'}
+        decoding="async"
       />
       <div className="hero-shards" aria-hidden="true">
         {shards.map((shard) => (
           <div className="hero-shard" data-x={shard.x.toFixed(2)} data-y={shard.y.toFixed(2)} data-rotation={shard.rotation.toFixed(2)} data-scale={shard.scale.toFixed(2)} key={shard.id} style={{ ...maskStyle, clipPath: `polygon(${shard.clip})`, WebkitClipPath: `polygon(${shard.clip})`, transform: index === 0 ? `translate3d(${shard.x}px, ${shard.y}px, 0) rotate(${shard.rotation}deg) scale(${shard.scale})` : undefined }}>
-            <img className="hero-shard__image" src={perfume.image} alt="" />
+            <img className="hero-shard__image" src={perfume.image} alt="" decoding="async" />
             <svg className="hero-shard__edge" viewBox="0 0 100 100" preserveAspectRatio="none" aria-hidden="true">
               <polygon points={shard.points} />
             </svg>
@@ -326,7 +328,7 @@ function App() {
             start: 'top top',
             end: () => `+=${window.innerWidth < 700 ? 1750 : 2300}`,
             pin: true,
-            scrub: 1,
+            scrub: window.innerWidth < 700 ? 0.45 : 1,
             anticipatePin: 1,
             invalidateOnRefresh: true,
           },
@@ -384,8 +386,11 @@ function App() {
             .to(nextEdges, { opacity: 0, duration: 0.16, ease: 'power1.out' }, stepStart + 0.68)
             .set(currentShardLayer, { autoAlpha: 0 }, stepStart + 0.86)
             .set(nextPhoto, { autoAlpha: 1 }, stepStart + 0.86)
-            .set(nextShardLayer, { autoAlpha: 0 }, stepStart + 0.86)
-            .to('.hero-art__sun', { filter: `hue-rotate(${(index + 1) * 49}deg)`, duration: 0.86, ease: 'sine.inOut' }, stepStart)
+            .set(nextShardLayer, { autoAlpha: 0 }, stepStart + 0.86);
+          if (window.innerWidth >= 700) {
+            heroSequence.to('.hero-art__sun', { filter: `hue-rotate(${(index + 1) * 49}deg)`, duration: 0.86, ease: 'sine.inOut' }, stepStart);
+          }
+          heroSequence
             .to(currentNote, { y: -13, autoAlpha: 0, duration: 0.34, ease: 'power2.out' }, stepStart + 0.1)
             .to(nextNote, { y: 0, autoAlpha: 1, duration: 0.42, ease: 'power2.out' }, stepStart + 0.2)
             .to(heroDots[index], { scale: 0.72, opacity: 0.42, duration: 0.25 }, stepStart)
@@ -561,7 +566,7 @@ function App() {
 
         <section className="story-section" id="story">
           <div className="story-image reveal">
-            <div className="story-image__frame"><img src="/images/hmns-orgsm.png" alt="Botol HMNS ORGSM dengan nuansa bunga dan amber" loading="lazy" /><span className="story-stamp">NOTES<br /><i>of</i><br />YOU</span><span className="story-image__caption">A FRAGRANCE, IN THREE ACTS.</span></div>
+            <div className="story-image__frame"><img src="/images/hmns-orgsm.webp" alt="Botol HMNS ORGSM dengan nuansa bunga dan amber" loading="lazy" decoding="async" /><span className="story-stamp">NOTES<br /><i>of</i><br />YOU</span><span className="story-image__caption">A FRAGRANCE, IN THREE ACTS.</span></div>
             <span className="story-orbit story-orbit--one" /><span className="story-orbit story-orbit--two" />
           </div>
           <div className="story-content reveal">

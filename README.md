@@ -19,7 +19,7 @@ Parfumefy adalah pengalaman editorial untuk mengenal parfum lewat karakter, kelu
 
 ## Fitur
 
-- **Hero scroll interaktif:** halaman pembuka dipin oleh GSAP ScrollTrigger. Afnan 9 PM mulai sebagai pecahan tak beraturan; scroll pertama menyatukannya. Scroll berikutnya memecah dan menyatukan botol parfum pilihan lain secara berurutan.
+- **Hero scroll interaktif:** halaman pembuka dipin oleh GSAP ScrollTrigger. Afnan 9 PM mulai sebagai pecahan tak beraturan; scroll pertama menyatukannya. Scroll berikutnya memecah dan menyatukan botol parfum pilihan lain secara berurutan. Jumlah pecahan dan efek bayangan dikurangi di layar kecil agar scroll tetap ringan.
 - **Koleksi parfum:** jelajahi produk dalam kartu, filter berdasarkan keluarga aroma, buka detail, dan lihat piramida notes.
 - **Favorit:** simpan parfum yang ingin diingat selama sesi halaman terbuka.
 - **Cerita aroma:** animasi reveal dan parallax membantu menjelaskan top notes, heart notes, dan dry down.
@@ -98,7 +98,7 @@ Variabel warna tersedia di bagian `:root` dalam `src/App.css`.
 
 ## Aset dan sumber
 
-Foto produk disimpan secara lokal di `public/images/`. Gambar cutout dipakai agar botol bisa dibagi menjadi pecahan saat animasi scroll.
+Foto produk disimpan secara lokal di `public/images/` dalam format WebP yang dikompresi. Gambar cutout dipakai agar botol bisa dibagi menjadi pecahan saat animasi scroll, dengan ukuran dan efek yang disesuaikan untuk layar kecil.
 
 | Produk | Referensi |
 | --- | --- |
